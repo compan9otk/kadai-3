@@ -32,6 +32,38 @@ img{
     display: none;
     width: 700px;
 }
+.money{
+    height: 150px;
+    width: 220px;
+    position: absolute;
+    top: 35%;
+    left: 3%;
+    background-color: rgb(155, 213, 162);
+    border-radius: 8px;
+}
+.money-list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 220px;
+}
+.money-title{
+    width: 70px;
+    padding-top: 38px;
+}
+.money-item{
+    width: 150px;
+    padding-top: 30px;
+}
+.money-parts{
+    font-size: 2.4rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    background-color: transparent;
+    width: 140px;
+    text-align: center;
+}
 .table{
     height: 180px;
     padding: 10px 0;

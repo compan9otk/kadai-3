@@ -6,6 +6,22 @@ let dealerScore = 0;
 let playerScore = 0;
 let dealerAce = 0;
 let playerAce = 0;
+let pocket = Number($('#pocket').val());
+let bet = Number($('#bet').val());
+
+//localStorageに値があれば呼び出す
+if(localStorage.pocket !== null || localStorage.pocket !== undefined){
+    pocket = localStorage.pocket;
+    $('#pocket').val(pocket);
+}
+localStorage.setItem('pocket',pocket);
+
+//所持金を更新する
+const updateMoney = (num)=> {
+    pocket = num;
+    $('#pocket').val(num);
+    localStorage.pocket = num;
+}
 
 //山札をシャッフルする
 const shuffleDeck = (array) => {
@@ -57,6 +73,7 @@ const drawCard = (who='player')=>{
 }
 //Startボタンを押す
 $('#start').on('click',()=>{
+    updateMoney(pocket - bet);
     $('#start').hide();
     $('.btn').show();
     deck = shuffleDeck(deck);
@@ -83,12 +100,15 @@ $('#stand').on('click',()=>{
     }
     if(dealerScore > 21){
         $('.win').show();
+        updateMoney(pocket + bet*2);
     }else if(dealerScore === playerScore){
         $('.draw').show();
+        updateMoney(pocket + bet);
     }else if(dealerScore > playerScore){
         $('.lose').show();
     }else{
         $('.win').show();
+        updateMoney(pocket + bet*2);
     }
     $('#stand').hide();
     $('#hit').hide();
@@ -96,6 +116,7 @@ $('#stand').on('click',()=>{
 })
 //Retryボタンを押す
 $('#retry').on('click',()=>{
+    updateMoney(pocket - bet);
     $('.btn').show();
     $('.retry').hide();
     $('.lose').hide();
